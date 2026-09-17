@@ -1,0 +1,185 @@
+{
+  "version": "1.9.0",
+  "fecha": "2026-09-16",
+  "enlaceApp": "https://oscarmestre2011.github.io/gymlog/",
+  "enlaceWeb": "https://oscarmestre2011.github.io/kairos/",
+  "caracteristicas": [
+    {
+      "icono": "📝",
+      "titulo": "Apuntar una serie cuesta dos toques",
+      "texto": "Escribes peso y repeticiones, tocas el ✓ y ya está. Las flechas + y − suben y bajan de 2,5 en 2,5 kg. Sin teclados raros ni ventanas encima."
+    },
+    {
+      "icono": "⏱️",
+      "titulo": "El descanso arranca solo",
+      "texto": "Al guardar la serie empieza a contar con el descanso de ese ejercicio. Puedes añadir 30 segundos o pararlo. Al terminar avisa con sonido y con la barra parpadeando en verde."
+    },
+    {
+      "icono": "⇄",
+      "titulo": "Si la máquina está ocupada, cambias el ejercicio",
+      "texto": "Tocas ⇄ y sigues con otro. Lo que ya habías apuntado no se pierde, y queda marcado de dónde venías para que después se entienda."
+    },
+    {
+      "icono": "▲",
+      "titulo": "Cada serie te dice si vas mejor que la última vez",
+      "texto": "Compara con la misma serie de la sesión anterior: ▲ si has subido, ▼ si has bajado. Es la forma más simple de saber que estás progresando."
+    },
+    {
+      "icono": "📋",
+      "titulo": "Tres rutinas hechas y las tuyas propias",
+      "texto": "Fuerza A, B y C vienen listas para usar, con series, repeticiones y descansos. Puedes cambiarlas o crear las tuyas, y poner cada una en su día de la semana."
+    },
+    {
+      "icono": "🏋️",
+      "titulo": "Superseries y series de aproximación",
+      "texto": "Enlaza dos o tres ejercicios y la app ajusta los descansos sola. Las series de calentamiento se apuntan aparte y no cuentan para el volumen ni para los récords."
+    },
+    {
+      "icono": "📈",
+      "titulo": "Progreso sin hojas de cálculo",
+      "texto": "Volumen por sesión y por semana, y series semanales por grupo muscular, para ver si un grupo se queda atrás. Las series de aproximación no cuentan."
+    },
+    {
+      "icono": "📏",
+      "titulo": "Peso y medidas con aviso cada 14 días",
+      "texto": "Peso, abdomen, pecho y muslo. La app te recuerda medirte cuando toca y te muestra la evolución. La cintura es más fiable que la báscula a corto plazo."
+    },
+    {
+      "icono": "🚴",
+      "titulo": "Cardio continuo, por series o fartlek",
+      "texto": "Bici, carrera o cinta con tramos: calentamiento, series, recuperaciones y vuelta a la calma. Puedes apuntarlos en tiempo, en metros o en kilómetros."
+    },
+    {
+      "icono": "💾",
+      "titulo": "Tus datos son tuyos, y te ayuda a no perderlos",
+      "texto": "No hay cuentas ni servidor. Como todo se guarda en tu móvil, la app insiste en las copias: las descargas a un archivo o deja que se guarden solas en una carpeta."
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "instalar",
+      "pregunta": "¿Cómo la pongo en el móvil como una app?",
+      "respuesta": "En Android: abre el enlace en Chrome, toca el menú de los tres puntos y elige «Añadir a pantalla de inicio». Aparecerá el icono de Kairós como cualquier otra app. En iPhone: abre el enlace en Safari, toca el botón de compartir y elige «Añadir a pantalla de inicio». Tiene que ser Safari; desde Chrome en iPhone esa opción no aparece. Una vez instalada, se abre a pantalla completa y funciona sin conexión: no hace falta tener datos en el gimnasio."
+    },
+    {
+      "id": "cuenta",
+      "pregunta": "¿Tengo que crear una cuenta?",
+      "respuesta": "No. No hay cuentas, ni registro, ni contraseña: abres y ya está. Tampoco hay nada que pagar ni anuncios. Y nadie más ve tus datos, porque no salen de tu móvil."
+    },
+    {
+      "id": "primera-sesion",
+      "pregunta": "¿Cómo apunto mi primer entrenamiento?",
+      "respuesta": "En la pantalla de Inicio, toca «Empezar entrenamiento». Elige una de las rutinas que vienen hechas (Fuerza A, B o C) o empieza sin rutina. En cada ejercicio, escribe el peso y las repeticiones y toca el botón ✓ para guardar la serie. El cronómetro de descanso arranca solo. Al terminar, toca «Terminar y guardar». Ahí puedes anotar cómo te has sentido."
+    },
+    {
+      "id": "rutinas-hechas",
+      "pregunta": "¿Qué rutinas vienen ya puestas?",
+      "respuesta": "Vienen tres: Fuerza A (empuje y pierna), Fuerza B (tirón y pierna) y Fuerza C (cuerpo completo), con ejercicios, series y descansos ya configurados. Puedes usarlas tal cual, cambiarlas a tu gusto o crear las tuyas desde cero en la pestaña Rutinas."
+    },
+    {
+      "id": "apuntar-serie",
+      "pregunta": "¿Cómo apunto una serie? ¿Y el RIR?",
+      "respuesta": "Escribe el peso y las repeticiones y toca el ✓. Aparece como serie hecha y arranca el descanso. El RIR es cuántas repeticiones te habrían quedado en reserva: si terminaste la serie y podrías haber hecho 2 más, es RIR 2. Es opcional, pero ayuda a saber si fuiste al límite. Con «+ aproximación» apuntas una serie de calentamiento: no cuenta para el volumen ni para los récords."
+    },
+    {
+      "id": "descanso",
+      "pregunta": "¿Cómo funciona el cronómetro de descanso?",
+      "respuesta": "Arranca solo al guardar una serie, con el descanso que tenga ese ejercicio. Puedes añadir 30 segundos con «+30s» o pararlo con la ✕. Al terminar avisa con un sonido repetido y la barra parpadeando en verde. El parpadeo está porque en iPhone el sonido no siempre funciona: así se ve aunque no se oiga. En Ajustes puedes elegir cuánto dura el aviso (corto, largo o muy largo) y si quieres que la pantalla no se apague mientras entrenas. Si se apaga, el móvil duerme la app y el aviso no suena hasta que vuelvas a encenderla."
+    },
+    {
+      "id": "cambiar-ejercicio",
+      "pregunta": "La máquina está ocupada, ¿puedo cambiar el ejercicio?",
+      "respuesta": "Sí. En cada ejercicio hay un botón ⇄ para cambiarlo por otro en mitad del entrenamiento. Lo que ya habías apuntado NO se pierde: esas series se quedan con el nombre del ejercicio que estabas haciendo y se marcan como «Cambiado desde…», para que después se entienda. El hueco en la rutina se conserva: mismas series, repeticiones y descanso."
+    },
+    {
+      "id": "plegar",
+      "pregunta": "¿Por qué se cierran los ejercicios que ya he hecho?",
+      "respuesta": "Al completar las series previstas, el ejercicio se pliega solo para que no tengas que bajar por toda la sesión. Queda el resumen: series hechas y volumen. Si quieres apuntar una serie de más o corregir algo, toca la flecha ▾ de su cabecera y se vuelve a abrir. El botón ▴ lo pliega cuando tú quieras, aunque no hayas terminado."
+    },
+    {
+      "id": "superseries",
+      "pregunta": "¿Cómo se hacen las superseries?",
+      "respuesta": "En Rutinas, al editar una, toca «⇄ Enlazar con el siguiente» para unir dos ejercicios. Se pueden encadenar tres. Al entrenar se ven juntos con etiquetas A1, A2, y el descanso se ajusta solo: corto al pasar de uno a otro (15 segundos por defecto) y completo al acabar la ronda. La barra del cronómetro dice para qué es cada descanso: «Siguiente ejercicio» o «Fin de ronda»."
+    },
+    {
+      "id": "salir-sesion",
+      "pregunta": "Si salgo a mirar otra pantalla, ¿pierdo el entrenamiento?",
+      "respuesta": "No. La sesión sigue abierta y aparece un aviso arriba con un botón para volver donde estabas. Puedes moverte por Rutinas, Ejercicios o Progreso sin miedo: al volver, todo sigue igual."
+    },
+    {
+      "id": "crear-ejercicio",
+      "pregunta": "No encuentro un ejercicio, ¿puedo crearlo?",
+      "respuesta": "Sí. En la pestaña Ejercicios, toca «+ Añadir ejercicio» y rellena el nombre, la descripción (cómo se hace), la parte del cuerpo que trabaja y el material. La descripción aparece después al elegir ese ejercicio y mientras entrenas, para acordarte de cómo lo hacías. Tus ejercicios salen marcados como «mío» y puedes editarlos o borrarlos cuando quieras."
+    },
+    {
+      "id": "borrar-ejercicio",
+      "pregunta": "Si borro un ejercicio, ¿pierdo sus entrenamientos?",
+      "respuesta": "No. Las series ya apuntadas se quedan con su nombre y siguen contando en la progresión. La app te avisa de cuántas series usaban ese ejercicio antes de borrarlo, por si acaso."
+    },
+    {
+      "id": "editar-rutina",
+      "pregunta": "¿Puedo cambiar series, repeticiones y descansos?",
+      "respuesta": "Sí. En Rutinas, toca «Editar» en la rutina y cambia lo que quieras: series, rango de repeticiones, descanso, el orden de los ejercicios o quitar alguno. Los cambios se aplican a los próximos entrenamientos. Las sesiones ya hechas no se tocan."
+    },
+    {
+      "id": "progreso-basico",
+      "pregunta": "¿Cómo sé si estoy mejorando?",
+      "respuesta": "En la pestaña Progreso, elige un ejercicio y verás su historial: peso, repeticiones y volumen de cada sesión. Mientras entrenas, cada serie te dice si vas mejor que la última vez (▲) o igual (=), comparando con la misma serie del último entrenamiento. Abajo tienes el volumen por semana y, si te interesa el equilibrio muscular, el volumen por grupo muscular de las últimas semanas."
+    },
+    {
+      "id": "grupos-musculares",
+      "pregunta": "¿Para qué sirve el volumen por grupo muscular?",
+      "respuesta": "Sirve para ver el equilibrio: si un grupo se queda muy por detrás de los demás, probablemente lo estés entrenando poco o lo estés saltando. Se cuenta en series por semana y por grupo (espalda, pecho, cuádriceps…), contando solo las series de trabajo: las de aproximación no cuentan. Un rango habitual para quien entrena fuerza son 10-20 series por grupo y semana. No es una norma rígida: úsalo para comparar tus grupos entre sí."
+    },
+    {
+      "id": "medidas",
+      "pregunta": "¿Cada cuánto me mido y qué me mido?",
+      "respuesta": "Peso, abdomen, pecho y muslo, con cinta métrica, cada dos semanas. En ayunas y a la misma hora, para poder comparar. La app te avisa en Inicio cuando llevas 14 días sin medirte. El abdomen (a la altura del ombligo) es el dato más fiable: la báscula a corto plazo engaña, la cintura no."
+    },
+    {
+      "id": "perfil",
+      "pregunta": "¿Qué es el perfil del deportista?",
+      "respuesta": "Es donde van tus datos fijos: altura, fecha de nacimiento, sexo y cuánto te mueves al día. Con eso la app calcula tu edad, el IMC, la relación cintura/altura y una estimación de lo que gastas al día. El peso NO se pide ahí: se coge de tu última medición corporal, así solo lo apuntas en un sitio. Si indicas tu porcentaje de grasa, la estimación mejora. Y son estimaciones para orientarte, no un diagnóstico médico."
+    },
+    {
+      "id": "donde-datos",
+      "pregunta": "¿Dónde se guardan mis datos? ¿Los ve alguien?",
+      "respuesta": "En tu móvil y solo en tu móvil. No hay servidor, así que nadie más puede verlos, ni siquiera quien hizo la app. Como contrapartida: si borras los datos del navegador o desinstalas la app, se pierden. Por eso están las copias de seguridad."
+    },
+    {
+      "id": "copia",
+      "pregunta": "¿Cómo hago una copia de seguridad?",
+      "respuesta": "En Ajustes → Copia de seguridad tienes dos formas, y puedes usar las dos. 1) Descargar el archivo: toca «⬇ Descargar copia» y guarda el archivo donde quieras. Para recuperarlo, «⬆ Importar copia». 2) Copia automática: elige una carpeta del móvil (Android) y la app guardará ahí una copia sola, con la frecuencia que elijas. El aviso de «toca copia» aparece en Inicio según el recordatorio que configures."
+    },
+    {
+      "id": "cambiar-movil",
+      "pregunta": "Me he cambiado de móvil, ¿cómo paso mis datos?",
+      "respuesta": "En el móvil viejo: Ajustes → Copia de seguridad → Descargar copia. Mándate el archivo a ti mismo (correo, WhatsApp, Drive). En el móvil nuevo: instala la app, abre Ajustes → Copia de seguridad → Importar copia y elige ese archivo. Al importar te preguntará si quieres combinarla con lo que haya o reemplazarlo todo. Si el móvil nuevo está vacío, da igual cuál elijas."
+    },
+    {
+      "id": "carpeta-permiso",
+      "pregunta": "La copia en carpeta dice «permiso caducado», ¿qué hago?",
+      "respuesta": "Es normal: los navegadores de móvil retiran el permiso de escritura al cerrarse del todo, por seguridad. Pulsa «Guardar ahora» y acepta el permiso cuando lo pida. Vuelve a funcionar. Si dice que no puede recordar la carpeta, prueba a elegir otra: algunas carpetas del sistema están protegidas."
+    },
+    {
+      "id": "compartir-datos",
+      "pregunta": "¿Puedo pasarle la app a un amigo?",
+      "respuesta": "Sí: mándale el enlace y que la añada a su pantalla de inicio. Cada persona tiene sus propios datos: lo que apunte él no se mezcla con lo tuyo, y al revés. No hay cuentas ni nada que configurar."
+    },
+    {
+      "id": "pantalla-apagada",
+      "pregunta": "Se apaga la pantalla y no suena el aviso del descanso",
+      "respuesta": "Cuando el móvil apaga la pantalla, el navegador duerme la app y el cronómetro no corre: es una limitación de las apps web, no un fallo. Solución: en Ajustes → Pantalla, activa «Mantener la pantalla encendida mientras uso la app». Así no se apaga y el aviso suena cuando toca. Si la apagas tú a propósito (bloqueando el móvil), al volver a encenderla la app se pone al día y avisa en ese momento."
+    },
+    {
+      "id": "sin-sonido",
+      "pregunta": "No me suena nada al terminar el descanso",
+      "respuesta": "Comprueba en Ajustes que el «Aviso sonoro» está activado y que el móvil no está en silencio. En iPhone el sonido no está garantizado (limitación de Safari), pero verás la barra parpadeando en verde con «¡Descanso terminado!». Toca cualquier botón de la app al empezar a entrenar: el navegador necesita un toque antes de dejar sonar."
+    },
+    {
+      "id": "pantalla-negra",
+      "pregunta": "La app se queda en negro o no abre",
+      "respuesta": "Espera unos segundos: si tarda, la app te dirá qué pasa en lugar de quedarse en negro, con botones para reintentar, limpiar la caché o borrar los datos. Si estas sin conexión y es la primera vez que la abres en ese móvil, necesita conexión una vez para descargarse. Antes de borrar nada, prueba «Reintentar». Si nada funciona y tienes copia, importa la copia después de limpiar."
+    }
+  ]
+}

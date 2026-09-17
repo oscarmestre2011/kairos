@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oscarmestre2011.github.io/kairos/sitemap.xml

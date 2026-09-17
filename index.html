@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="es" class="sin-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Kairós — la libreta de entrenamiento para el móvil</title>
+    <meta
+      name="description"
+      content="Kairós es una libreta de entrenamiento para el móvil: apunta series, rutinas, descansos, progreso, medidas y cardio. Funciona sin conexión, no necesita cuenta y guarda todo en tu teléfono."
+    />
+    <meta name="theme-color" content="#0f1115" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="Óscar Mestre" />
+
+    <!-- Como se ve el enlace cuando alguien lo comparte por WhatsApp o correo. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Kairós" />
+    <meta property="og:title" content="Kairós — la libreta de entrenamiento para el móvil" />
+    <meta
+      property="og:description"
+      content="Apunta lo que levantas, sin conexión y sin cuentas. Todo se queda en tu móvil."
+    />
+    <meta property="og:image" content="./assets/inicio.jpg" />
+    <meta property="og:image:alt" content="Pantalla de inicio de Kairós con el entrenamiento del día" />
+    <meta property="og:url" content="https://oscarmestre2011.github.io/kairos/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Para que los buscadores entiendan que esto presenta una aplicacion y no un negocio. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Kairós",
+        "alternateName": "Kairós — Entrenamiento",
+        "applicationCategory": "HealthApplication",
+        "applicationSubCategory": "Registro de entrenamiento de fuerza",
+        "operatingSystem": "Android, iOS, Windows, macOS, Linux (navegador web)",
+        "inLanguage": "es",
+        "url": "https://oscarmestre2011.github.io/kairos/",
+        "installUrl": "https://oscarmestre2011.github.io/gymlog/",
+        "description": "Libreta de entrenamiento para el móvil: series, rutinas, descansos, progreso, medidas y cardio. Funciona sin conexión y guarda los datos en el propio teléfono.",
+        "author": { "@type": "Person", "name": "Óscar Mestre" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "featureList": [
+          "Registro de series con peso y repeticiones",
+          "Cronómetro de descanso automático",
+          "Rutinas propias y tres de ejemplo",
+          "Progreso por ejercicio y volumen semanal",
+          "Series por grupo muscular",
+          "Medidas corporales",
+          "Cardio continuo, por series y fartlek",
+          "Funciona sin conexión y sin cuentas"
+        ]
+      }
+    </script>
+
+    <link rel="canonical" href="https://oscarmestre2011.github.io/kairos/" />
+    <link rel="icon" type="image/png" href="./assets/icono-192.png" />
+    <link rel="apple-touch-icon" href="./assets/icono-192.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preload" as="image" href="./assets/inicio.jpg" />
+
+    <!--
+      Marca desde el primer instante (sin parpadeo) si el visitante viene de un iPhone, para
+      resaltar la pestaña de instalacion que le sirve. Solo cambia una clase de estilo.
+    -->
+    <script>
+      document.documentElement.className =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'es-ios' : 'no-ios'
+    </script>
+  </head>
+
+  <body>
+    <a class="saltar" href="#que-es">Saltar al contenido</a>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera-fila">
+        <a class="marca" href="./">
+          <img src="./assets/icono-72.png" alt="" width="36" height="36" />
+          <span>Kairós</span>
+        </a>
+        <nav class="menu" aria-label="Secciones">
+          <a href="#que-hace">Qué hace</a>
+          <a href="#pantallas">Pantallas</a>
+          <a href="#instalar">Instalar</a>
+          <a href="#datos">Tus datos</a>
+          <a href="#preguntas">Dudas</a>
+        </nav>
+        <a class="btn btn-primary btn-cabecera" href="https://oscarmestre2011.github.io/gymlog/">
+          Abrir la app
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- ------------------------------- portada ------------------------------- -->
+      <section class="portada" id="que-es">
+        <div class="contenedor portada-fila">
+          <div class="portada-texto">
+            <p class="etiqueta">Registro de entrenamiento · Sin conexión · Gratis</p>
+            <h1>La libreta de entrenamiento que ya llevas en el bolsillo</h1>
+            <p class="entradilla">
+              Apunta lo que levantas, cuánto descansas y cómo vas semana a semana. Kairós funciona
+              <strong>sin conexión</strong> y guarda todo <strong>en tu propio móvil</strong>: sin
+              registrarte, sin cuentas y sin que tus datos salgan de casa.
+            </p>
+
+            <div class="acciones">
+              <a
+                class="btn btn-primary btn-grande"
+                id="abrir-app"
+                href="https://oscarmestre2011.github.io/gymlog/"
+              >
+                Abrir Kairós en este móvil
+              </a>
+              <!-- Este boton lo ensenya main.js solo si el navegador ofrece instalar de verdad.
+                   Empieza oculto: si no hay JavaScript no aparece nunca, y quedan los pasos.
+                   Ojo con el identificador: `instalar` ya lo usa la seccion de mas abajo. -->
+              <button class="btn btn-grande" id="boton-instalar" type="button" hidden>
+                Instalar en el móvil
+              </button>
+              <a class="btn btn-grande" href="#instalar">Cómo ponerla en la pantalla de inicio</a>
+            </div>
+
+            <p class="nota-instalar" id="nota-instalar" hidden>
+              Si no aparece el aviso, tranquilidad: se instala igual desde el menú del navegador.
+              <a href="#instalar">Míralo aquí abajo</a>.
+            </p>
+
+            <ul class="senales">
+              <li><span aria-hidden="true">✓</span> Sin cuenta y sin contraseña</li>
+              <li><span aria-hidden="true">✓</span> Funciona en el gimnasio sin cobertura</li>
+              <li><span aria-hidden="true">✓</span> Sin anuncios ni suscripciones</li>
+            </ul>
+          </div>
+
+          <div class="portada-moviles" aria-hidden="true">
+            <figure class="movil movil-detras">
+              <img
+                src="./assets/sesion.jpg"
+                alt=""
+                width="540"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="movil movil-delante">
+              <img
+                src="./assets/inicio.jpg"
+                alt=""
+                width="540"
+                height="1000"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------- problema ------------------------------ -->
+      <section class="franja">
+        <div class="contenedor texto-largo">
+          <h2>El problema no es entrenar. Es acordarse</h2>
+          <p>
+            ¿Cuánto levantaste en sentadilla el martes pasado? ¿Tres series o cuatro? La memoria
+            engaña, y el móvil tampoco ayuda: entre desbloquear, buscar la nota, escribir con el
+            teclado pequeño y que se apague la pantalla, se te va el descanso.
+          </p>
+          <p>
+            La alternativa de siempre es el papel, pero en el gimnasio se moja, se pierde y no te
+            dice si has mejorado. Y las apps «completas» piden cuenta, conexión y una cuota.
+          </p>
+          <p class="remate">
+            Kairós es lo contrario: <strong>abres, apuntas y sigues</strong>. Y si algún día quieres
+            mirar atrás, ahí está todo lo que has hecho.
+          </p>
+        </div>
+      </section>
+
+      <!-- -------------------------------- qué hace ------------------------------ -->
+      <section class="seccion" id="que-hace">
+        <div class="contenedor">
+          <header class="titulo-seccion">
+            <h2>Qué hace, contado sin adornos</h2>
+            <p>
+              Todo lo que sigue está en la app de verdad, no es una lista de deseos. Si algo tiene
+              un límite, también se dice: mira el
+              <a href="#letra-pequena">apartado de la letra pequeña</a>.
+            </p>
+          </header>
+
+          <ul class="rejilla-caracteristicas" id="lista-caracteristicas">
+            <!-- Lo rellena main.js a partir de publicar/kairos.json, que sale de la app.
+                 Si el JavaScript no carga, queda lo de reserva: se cambia a mano solo si la app cambia. -->
+            <li class="tarjeta-caracteristica">
+              <span class="icono" aria-hidden="true">📝</span>
+              <h3>Apuntar una serie cuesta dos toques</h3>
+              <p>Escribes peso y repeticiones, tocas el ✓ y ya está.</p>
+            </li>
+            <li class="tarjeta-caracteristica">
+              <span class="icono" aria-hidden="true">⏱️</span>
+              <h3>El descanso arranca solo</h3>
+              <p>Al guardar la serie empieza a contar con el descanso de ese ejercicio.</p>
+            </li>
+            <li class="tarjeta-caracteristica">
+              <span class="icono" aria-hidden="true">⇄</span>
+              <h3>Si la máquina está ocupada, cambias el ejercicio</h3>
+              <p>Tocas ⇄ y sigues con otro, sin perder lo que ya habías apuntado.</p>
+            </li>
+            <li class="tarjeta-caracteristica">
+              <span class="icono" aria-hidden="true">▲</span>
+              <h3>Cada serie te dice si vas mejor que la última vez</h3>
+              <p>Compara con la misma serie de la sesión anterior.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ------------------------------- pantallas ------------------------------ -->
+      <section class="seccion seccion-alterna" id="pantallas">
+        <div class="contenedor">
+          <header class="titulo-seccion">
+            <h2>Así se ve</h2>
+            <p>
+              Capturas de la app tal cual, con un entrenamiento de ejemplo. Nada de maquetas
+              bonitas que después no existen.
+            </p>
+          </header>
+
+          <ul class="galeria">
+            <li>
+              <figure class="movil">
+                <img src="./assets/inicio.jpg" alt="Pantalla de inicio de Kairós con el entrenamiento del día" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Inicio</h3>
+              <p>Qué toca hoy, lo que llevas esta semana y los avisos de copia y medidas.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/sesion.jpg" alt="Pantalla de entrenamiento con las series apuntadas" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Mientras entrenas</h3>
+              <p>Cada ejercicio con sus series, y cada serie diciéndote si has subido peso.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/descanso.jpg" alt="Cronómetro de descanso con la comparación con la última sesión" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>El descanso</h3>
+              <p>Cronómetro grande, +30 s si te hace falta, y aviso sonoro al terminar.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/progreso.jpg" alt="Pantalla de progreso con volumen de entrenamiento y kilómetros acumulados" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Progreso</h3>
+              <p>Volumen por sesión, kilómetros de cardio y racha de semanas seguidas.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/grupos.jpg" alt="Series semanales por grupo muscular" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Grupos musculares</h3>
+              <p>Series por semana y por grupo, para ver si alguno se queda atrás.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/plan.jpg" alt="Plan de la semana con las rutinas repartidas por días" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Plan de la semana</h3>
+              <p>Cada rutina en su día, y un aviso si el reparto no cuadra.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/medidas.jpg" alt="Pantalla de medidas corporales con peso, abdomen y pecho" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Medidas</h3>
+              <p>Peso y cintura cada 14 días, que es lo que de verdad se mueve.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/cardio.jpg" alt="Editor de cardio por series con tramos de tiempo" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Cardio</h3>
+              <p>Continuo, por series o fartlek, en tiempo, metros o kilómetros.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/superserie.jpg" alt="Editor de rutina con dos ejercicios enlazados en superserie" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Superseries</h3>
+              <p>Enlaza dos o tres ejercicios: la app ajusta los descansos sola.</p>
+            </li>
+            <li>
+              <figure class="movil">
+                <img src="./assets/perfil.jpg" alt="Perfil del deportista con altura, edad y estimaciones" loading="lazy" decoding="async" width="540" height="1000" />
+              </figure>
+              <h3>Perfil</h3>
+              <p>Edad, IMC y una estimación de lo que gastas al día, marcada como estimación.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- -------------------------------- instalar ------------------------------ -->
+      <section class="seccion" id="instalar">
+        <div class="contenedor texto-largo">
+          <header class="titulo-seccion">
+            <h2>Ponerla en el móvil</h2>
+            <p>
+              No se descarga de ninguna tienda de aplicaciones: se abre en el navegador y se añade a
+              la pantalla de inicio. Queda como una app normal, con su icono, a pantalla completa.
+            </p>
+          </header>
+
+          <div class="pestanas">
+            <input type="radio" name="plataforma" id="p-android" class="pestana-radio" checked />
+            <input type="radio" name="plataforma" id="p-ios" class="pestana-radio" />
+            <div class="pestanas-botones">
+              <label for="p-android">Android <span class="marca-recomendado solo-android">tu móvil</span></label>
+              <label for="p-ios">iPhone <span class="marca-recomendado solo-ios">tu móvil</span></label>
+            </div>
+
+            <div class="pestana-panel panel-android">
+              <ol class="pasos">
+                <li>
+                  <strong>Abre el enlace en Chrome.</strong> En el mismo móvil donde vas a
+                  entrenar:
+                  <a href="https://oscarmestre2011.github.io/gymlog/">oscarmestre2011.github.io/gymlog</a>
+                </li>
+                <li>
+                  <strong>Toca el menú de los tres puntos</strong> (arriba a la derecha) y elige
+                  <em>Añadir a pantalla de inicio</em>. Si aparece <em>Instalar aplicación</em>,
+                  también vale.
+                </li>
+                <li>
+                  <strong>Confirma.</strong> Aparecerá el icono de Kairós junto a tus demás apps. Ábrela
+                  desde ahí y ya funciona sin conexión.
+                </li>
+              </ol>
+              <p class="apunte">
+                Si te sale el botón <em>Instalar en el móvil</em> en esta misma página, es un atajo:
+                hace lo mismo que los tres pasos.
+              </p>
+            </div>
+
+            <div class="pestana-panel panel-ios">
+              <ol class="pasos">
+                <li>
+                  <strong>Abre el enlace en Safari.</strong> Tiene que ser Safari: desde Chrome en
+                  iPhone esa opción no aparece.
+                </li>
+                <li>
+                  <strong>Toca el botón de compartir</strong> (el cuadro con la flecha hacia arriba)
+                  y baja hasta <em>Añadir a pantalla de inicio</em>.
+                </li>
+                <li>
+                  <strong>Confirma y ábrela desde el icono.</strong> Verás que se abre a pantalla
+                  completa, como cualquier app.
+                </li>
+              </ol>
+              <p class="apunte">
+                Dos límites que conviene saber antes: en iPhone el sonido del aviso de descanso no
+                está garantizado (por eso la barra parpadea en verde), y la copia automática a una
+                carpeta no existe. En iPhone la copia se descarga como archivo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------------------------- datos ------------------------------- -->
+      <section class="seccion seccion-alterna" id="datos">
+        <div class="contenedor texto-largo">
+          <header class="titulo-seccion">
+            <h2>Tus datos se quedan en tu móvil</h2>
+            <p>
+              No hay servidor, no hay nube y no hay empresa detrás: la app la ha hecho una persona.
+              Lo que apuntas no sale de tu teléfono, y nadie más puede verlo.
+            </p>
+          </header>
+
+          <div class="rejilla-datos">
+            <article class="tarjeta">
+              <h3>Nada que registrar</h3>
+              <p>
+                Sin cuenta, sin correo, sin contraseña. Abres la app y empiezas. Tampoco se pide
+                ningún dato personal para usarla.
+              </p>
+            </article>
+            <article class="tarjeta">
+              <h3>Funciona sin cobertura</h3>
+              <p>
+                En muchos gimnasios no hay señal, y da igual: una vez instalada se abre y se apunta
+                todo aunque el móvil esté sin datos.
+              </p>
+            </article>
+            <article class="tarjeta">
+              <h3>Y por eso mismo, haz copias</h3>
+              <p>
+                Como todo está solo en tu móvil, si borras los datos del navegador o desinstalas la
+                app, se pierden. Kairós te lo recuerda y te lo pone fácil.
+              </p>
+            </article>
+            <article class="tarjeta">
+              <h3>Dos formas de copia</h3>
+              <p>
+                Descargar el archivo y guardarlo donde quieras, o elegir una carpeta del móvil
+                (Android) para que la app guarde una copia sola cada cierto tiempo. Cambiar de móvil
+                es importar ese archivo.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------ letra pequeña --------------------------- -->
+      <section class="seccion" id="letra-pequena">
+        <div class="contenedor texto-largo">
+          <header class="titulo-seccion">
+            <h2>Lo que Kairós no hace</h2>
+            <p>
+              Preferimos decirlo antes que dejarte con la duda. Ninguna de estas cosas está en la
+              app, y no queremos que las esperes:
+            </p>
+          </header>
+          <ul class="lista-limites">
+            <li>No es una app de tienda: se instala desde el navegador.</li>
+            <li>No compite con nadie, no hay perfiles públicos ni feed social que mirar.</li>
+            <li>No sustituye a un entrenador ni a un médico: las estimaciones son orientativas.</li>
+            <li>No sincroniza entre móviles sola: pasar los datos es exportar e importar.</li>
+            <li>No entrena con la pantalla apagada: para eso está el ajuste de mantenerla encendida.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ------------------------------- preguntas ------------------------------ -->
+      <section class="seccion seccion-alterna" id="preguntas">
+        <div class="contenedor texto-largo">
+          <header class="titulo-seccion">
+            <h2>Dudas frecuentes</h2>
+            <p>
+              Estas respuestas son las mismas que da la app por dentro, así que no pueden
+              contradecirse.
+            </p>
+          </header>
+
+          <div class="lista-preguntas" id="lista-preguntas">
+            <details>
+              <summary>¿Tengo que crear una cuenta?</summary>
+              <p>No. No hay cuentas, ni registro, ni contraseña: abres y ya está.</p>
+            </details>
+            <details>
+              <summary>¿Dónde se guardan mis datos? ¿Los ve alguien?</summary>
+              <p>
+                En tu móvil y solo en tu móvil. No hay servidor, así que nadie más puede verlos.
+              </p>
+            </details>
+            <details>
+              <summary>¿Cuánto cuesta?</summary>
+              <p>Nada. No hay versión de pago, ni anuncios, ni suscripción.</p>
+            </details>
+          </div>
+
+          <p class="apunte-centro">
+            ¿Te falta una pregunta? Mírala dentro de la app, en <strong>Ajustes → Ayuda</strong>: hay
+            25 respuestas buscables.
+          </p>
+        </div>
+      </section>
+
+      <!-- --------------------------------- final -------------------------------- -->
+      <section class="cierre">
+        <div class="contenedor texto-largo">
+          <h2>Se tarda menos en apuntarlo que en dudarlo</h2>
+          <p>
+            Ábrela en este móvil, añádela a la pantalla de inicio y el próximo día de entreno ya
+            tendrás la libreta lista.
+          </p>
+          <p class="acciones acciones-centro">
+            <a class="btn btn-primary btn-grande" href="https://oscarmestre2011.github.io/gymlog/">
+              Abrir Kairós
+            </a>
+            <a class="btn btn-grande" href="#instalar">Ver cómo instalarla</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div class="contenedor pie-fila">
+        <div>
+          <p class="marca-pie">
+            <img src="./assets/icono-72.png" alt="" width="28" height="28" />
+            <span>Kairós</span>
+          </p>
+          <p class="pie-texto">
+            Una app de entrenamiento hecha por una persona, para entrenar sin complicaciones.
+            <span id="version-pie"></span>
+          </p>
+        </div>
+        <nav class="pie-enlaces" aria-label="Enlaces">
+          <a href="https://oscarmestre2011.github.io/gymlog/">Abrir la app</a>
+          <a href="#instalar">Instalar</a>
+          <a href="#preguntas">Dudas</a>
+          <a href="https://github.com/oscarmestre2011/kairos">Código de esta web</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
