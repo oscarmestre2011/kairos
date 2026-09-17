@@ -1,0 +1,20 @@
+{
+  "enlace": "https://paypal.me/oscarmuela85",
+  "cantidades": [
+    {
+      "cantidad": 5,
+      "enlace": "https://paypal.me/oscarmuela85/5EUR"
+    },
+    {
+      "cantidad": 10,
+      "enlace": "https://paypal.me/oscarmuela85/10EUR"
+    },
+    {
+      "cantidad": 20,
+      "enlace": "https://paypal.me/oscarmuela85/20EUR"
+    }
+  ],
+  "titulo": "Kairós es gratis, y lo será",
+  "texto": "Sin anuncios, sin suscripciones y sin funciones capadas. Si te resulta útil y quieres aportar tu granito, puedes dejar una donación voluntaria por PayPal.",
+  "aclaracion": "No desbloquea nada: la app sigue igual de gratis y completa. Tampoco desgrava, porque no es una donación a una ONG."
+}

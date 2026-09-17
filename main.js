@@ -13,6 +13,8 @@
 
 const ENLACE_APP = 'https://oscarmestre2011.github.io/gymlog/'
 const DATOS = './publicar/kairos.json'
+/** El apoyo y los datos de la app van en archivos distintos: si uno falla, el otro sigue en pie. */
+const DATOS_APOYO = './publicar/apoyo.json'
 
 /** Esta abierta como app instalada (no en una pestana del navegador)? */
 function estaInstalada() {
@@ -59,7 +61,9 @@ function pintarPreguntas(lista) {
   }
 }
 
-/** Deja constancia de la version de la app que se anuncia. */
+/**
+ * Deja constancia de la version de la app que se anuncia.
+ */
 function pintarVersion(datos) {
   const hueco = document.getElementById('version-pie')
   if (hueco && datos.version) {
@@ -68,6 +72,54 @@ function pintarVersion(datos) {
   for (const enlace of document.querySelectorAll('a[href*="github.io/gymlog"]')) {
     enlace.setAttribute('href', datos.enlaceApp ?? ENLACE_APP)
   }
+}
+
+/**
+ * Donacion voluntaria.
+ *
+ * Dos reglas que vienen del motivo por el que existe esto: la donacion NO desbloquea nada (si lo
+ * hiciera seria una venta, con IVA y 14 dias de desistimiento) y NO se dice que desgrave. Por eso
+ * los textos y la aclaracion viajan en apoyo.json, escritos una sola vez en la app, en lugar de
+ * estar aqui a mano donde nadie los revisaria.
+ *
+ * Si apoyo.json no carga, la seccion se queda oculta: es mejor no enseñar una donacion a medias.
+ */
+function pintarApoyo(datos) {
+  const seccion = document.getElementById('apoyo')
+  if (!seccion) return
+  if (!datos || !datos.enlace || !Array.isArray(datos.cantidades) || datos.cantidades.length === 0) {
+    return
+  }
+
+  const titulo = document.getElementById('apoyo-titulo')
+  const texto = document.getElementById('apoyo-texto')
+  const aclaracion = document.getElementById('apoyo-aclaracion')
+  const botones = document.getElementById('apoyo-botones')
+  if (titulo && datos.titulo) titulo.textContent = datos.titulo
+  if (texto && datos.texto) texto.textContent = datos.texto
+  if (aclaracion && datos.aclaracion) aclaracion.textContent = datos.aclaracion
+
+  if (botones) {
+    botones.textContent = ''
+    for (const opcion of datos.cantidades) {
+      const enlace = document.createElement('a')
+      enlace.className = 'btn btn-grande'
+      enlace.href = opcion.enlace
+      enlace.target = '_blank'
+      enlace.rel = 'noopener noreferrer'
+      enlace.textContent = `${opcion.cantidad} €`
+      botones.appendChild(enlace)
+    }
+    const otra = document.createElement('a')
+    otra.className = 'btn btn-grande'
+    otra.href = datos.enlace
+    otra.target = '_blank'
+    otra.rel = 'noopener noreferrer'
+    otra.textContent = 'Otra cantidad'
+    botones.appendChild(otra)
+  }
+
+  seccion.hidden = false
 }
 
 /** El aviso de instalacion nativo, cuando el navegador lo ofrece. */
@@ -120,6 +172,20 @@ function prepararInstalacion() {
   })
 }
 
+/** El apoyo va en su propio archivo: se pide aparte y, si falla, solo se pierde esa seccion. */
+async function cargarApoyo() {
+  try {
+    const respuesta = await fetch(DATOS_APOYO, { cache: 'no-cache' })
+    if (!respuesta.ok) throw new Error(`apoyo.json: ${respuesta.status}`)
+    const datos = await respuesta.json()
+    pintarApoyo(datos)
+    return datos
+  } catch (error) {
+    console.warn('No se ha podido cargar el apoyo voluntario:', error)
+    return null
+  }
+}
+
 /** Trae los datos de la app. Si falla, la pagina se queda con su contenido de reserva. */
 async function cargarDatos() {
   try {
@@ -139,3 +205,4 @@ async function cargarDatos() {
 
 prepararInstalacion()
 cargarDatos()
+cargarApoyo()
