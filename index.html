@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" class="sin-js">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -60,15 +60,6 @@
     <link rel="apple-touch-icon" href="./assets/icono-192.png" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="preload" as="image" href="./assets/inicio.jpg" />
-
-    <!--
-      Marca desde el primer instante (sin parpadeo) si el visitante viene de un iPhone, para
-      resaltar la pestaña de instalacion que le sirve. Solo cambia una clase de estilo.
-    -->
-    <script>
-      document.documentElement.className =
-        /iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'es-ios' : 'no-ios'
-    </script>
   </head>
 
   <body>
@@ -112,7 +103,7 @@
                 id="abrir-app"
                 href="https://oscarmestre2011.github.io/gymlog/"
               >
-                Abrir Kairós en este móvil
+                📲 Descargar la app
               </a>
               <!-- Este boton lo ensenya main.js solo si el navegador ofrece instalar de verdad.
                    Empieza oculto: si no hay JavaScript no aparece nunca, y quedan los pasos.
@@ -127,6 +118,9 @@
               Si no aparece el aviso, tranquilidad: se instala igual desde el menú del navegador.
               <a href="#instalar">Míralo aquí abajo</a>.
             </p>
+
+            <!-- Apoyo voluntario, junto al boton de descarga. Lo rellena main.js con apoyo.json. -->
+            <div class="apoyo-linea" id="apoyo-linea-portada" hidden></div>
 
             <ul class="senales">
               <li><span aria-hidden="true">✓</span> Sin cuenta y sin contraseña</li>
@@ -323,16 +317,24 @@
             <input type="radio" name="plataforma" id="p-android" class="pestana-radio" checked />
             <input type="radio" name="plataforma" id="p-ios" class="pestana-radio" />
             <div class="pestanas-botones">
-              <label for="p-android">Android <span class="marca-recomendado solo-android">tu móvil</span></label>
-              <label for="p-ios">iPhone <span class="marca-recomendado solo-ios">tu móvil</span></label>
+              <label for="p-android">Android</label>
+              <label for="p-ios">iPhone</label>
             </div>
 
             <div class="pestana-panel panel-android">
               <ol class="pasos">
                 <li>
                   <strong>Abre el enlace en Chrome.</strong> En el mismo móvil donde vas a
-                  entrenar:
-                  <a href="https://oscarmestre2011.github.io/gymlog/">oscarmestre2011.github.io/gymlog</a>
+                  entrenar. Aquí lo tienes, sin que aparezca la dirección por medio:
+                  <span class="acciones">
+                    <a
+                      class="btn btn-primary"
+                      href="https://oscarmestre2011.github.io/gymlog/"
+                      id="descarga-android"
+                    >
+                      📲 Descargar la app
+                    </a>
+                  </span>
                 </li>
                 <li>
                   <strong>Toca el menú de los tres puntos</strong> (arriba a la derecha) y elige
@@ -372,6 +374,9 @@
               </p>
             </div>
           </div>
+
+          <!-- Apoyo voluntario, al final de los pasos de instalación. -->
+          <div class="apoyo-linea" id="apoyo-linea-instalar" hidden></div>
         </div>
       </section>
 
@@ -417,6 +422,9 @@
               </p>
             </article>
           </div>
+
+          <!-- Apoyo voluntario, aqui es donde se cuenta que no hay anuncios ni suscripciones. -->
+          <div class="apoyo-linea" id="apoyo-linea-datos" hidden></div>
         </div>
       </section>
 
@@ -484,7 +492,9 @@
             <h2 id="apoyo-titulo">Kairós es gratis, y lo será</h2>
             <p id="apoyo-texto"></p>
           </header>
-          <p class="acciones acciones-centro" id="apoyo-botones"></p>
+          <p class="acciones acciones-centro" id="apoyo-botones">
+            <!-- Lo rellena main.js con publicar/apoyo.json. -->
+          </p>
           <p class="apunte" id="apoyo-aclaracion"></p>
         </div>
       </section>
@@ -496,12 +506,15 @@
           <p>
             Ábrela en este móvil, añádela a la pantalla de inicio y el próximo día de entreno ya
             tendrás la libreta lista.
-          </p>          <p class="acciones acciones-centro">
+          </p>
+          <p class="acciones acciones-centro">
             <a class="btn btn-primary btn-grande" href="https://oscarmestre2011.github.io/gymlog/">
-              Abrir Kairós
+              📲 Descargar la app
             </a>
             <a class="btn btn-grande" href="#instalar">Ver cómo instalarla</a>
           </p>
+          <!-- Apoyo voluntario, junto al boton final de descarga. -->
+          <div class="apoyo-linea" id="apoyo-linea-cierre" hidden></div>
         </div>
       </section>
     </main>

@@ -75,67 +75,85 @@ function pintarVersion(datos) {
 }
 
 /**
- * Donacion voluntaria.
+ * Botones de donacion.
  *
- * Dos reglas que vienen del motivo por el que existe esto: la donacion NO desbloquea nada (si lo
- * hiciera seria una venta, con IVA y 14 dias de desistimiento) y NO se dice que desgrave. Por eso
- * los textos y la aclaracion viajan en apoyo.json, escritos una sola vez en la app, en lugar de
- * estar aqui a mano donde nadie los revisaria.
+ * Los mismos botones van en varios sitios (en la portada junto al boton de descarga, al final de
+ * los pasos de instalacion, en el apartado de datos y en el cierre). Se generan desde un solo
+ * objeto `datos`, asi que no puede pasar que en un sitio ponga una cosa y en otro otra.
  *
- * Si apoyo.json no carga, la seccion se queda oculta: es mejor no enseñar una donacion a medias.
+ * Si `apoyo.json` no carga, no queda ni un boton a medias: los huecos se quedan ocultos.
  */
+function botonesDeApoyo(datos, { compacto = false } = {}) {
+  const nodos = []
+  for (const opcion of datos.cantidades) {
+    const enlace = document.createElement('a')
+    enlace.className = compacto ? 'btn btn-apoyo' : 'btn btn-grande'
+    enlace.href = opcion.enlace
+    enlace.target = '_blank'
+    enlace.rel = 'noopener noreferrer'
+    enlace.textContent = `${compacto ? '☕ ' : ''}${opcion.cantidad} €`
+    nodos.push(enlace)
+  }
+  const otra = document.createElement('a')
+  otra.className = compacto ? 'btn btn-apoyo' : 'btn btn-grande'
+  otra.href = datos.enlace
+  otra.target = '_blank'
+  otra.rel = 'noopener noreferrer'
+  otra.textContent = 'Otra cantidad'
+  nodos.push(otra)
+  return nodos
+}
+
+/** Rellena todos los huecos de apoyo que haya en la pagina. */
 function pintarApoyo(datos) {
-  const seccion = document.getElementById('apoyo')
-  if (!seccion) return
+  // Los datos tienen que ser validos: mejor cero botones que botones rotos o sin importe.
   if (!datos || !datos.enlace || !Array.isArray(datos.cantidades) || datos.cantidades.length === 0) {
     return
   }
-
-  const titulo = document.getElementById('apoyo-titulo')
-  const texto = document.getElementById('apoyo-texto')
-  const aclaracion = document.getElementById('apoyo-aclaracion')
-  const botones = document.getElementById('apoyo-botones')
-  if (titulo && datos.titulo) titulo.textContent = datos.titulo
-  if (texto && datos.texto) texto.textContent = datos.texto
-  if (aclaracion && datos.aclaracion) aclaracion.textContent = datos.aclaracion
-
-  if (botones) {
-    botones.textContent = ''
-    for (const opcion of datos.cantidades) {
-      const enlace = document.createElement('a')
-      enlace.className = 'btn btn-grande'
-      enlace.href = opcion.enlace
-      enlace.target = '_blank'
-      enlace.rel = 'noopener noreferrer'
-      enlace.textContent = `${opcion.cantidad} €`
-      botones.appendChild(enlace)
-    }
-    const otra = document.createElement('a')
-    otra.className = 'btn btn-grande'
-    otra.href = datos.enlace
-    otra.target = '_blank'
-    otra.rel = 'noopener noreferrer'
-    otra.textContent = 'Otra cantidad'
-    botones.appendChild(otra)
+  if (!/^https:\/\/(www\.)?paypal\.me\/[A-Za-z0-9._-]+$/.test(datos.enlace)) {
+    console.warn('El enlace de apoyo no tiene buena pinta, no se enseña:', datos.enlace)
+    return
   }
 
-  seccion.hidden = false
+  const huecos = document.querySelectorAll('.apoyo-linea')
+  for (const hueco of huecos) {
+    hueco.textContent = ''
+    const texto = crear('p', null, '¿Te resulta útil? Puedes dejar una donación voluntaria. No desbloquea nada.')
+    hueco.appendChild(texto)
+    for (const boton of botonesDeApoyo(datos, { compacto: true })) hueco.appendChild(boton)
+    hueco.hidden = false
+  }
+
+  const seccion = document.getElementById('apoyo')
+  if (seccion) {
+    const titulo = document.getElementById('apoyo-titulo')
+    const texto = document.getElementById('apoyo-texto')
+    const aclaracion = document.getElementById('apoyo-aclaracion')
+    const botones = document.getElementById('apoyo-botones')
+    if (titulo && datos.titulo) titulo.textContent = datos.titulo
+    if (texto && datos.texto) texto.textContent = datos.texto
+    if (aclaracion && datos.aclaracion) aclaracion.textContent = datos.aclaracion
+    if (botones) {
+      botones.textContent = ''
+      for (const boton of botonesDeApoyo(datos)) botones.appendChild(boton)
+    }
+    seccion.hidden = false
+  }
 }
 
 /** El aviso de instalacion nativo, cuando el navegador lo ofrece. */
 let avisoDiferido = null
 
-function prepararInstalacion() {
-  const boton = document.getElementById('boton-instalar')
+function prepararInstalacion(boton) {
   const nota = document.getElementById('nota-instalar')
   if (!boton) return
 
-  // Ya instalada: no tiene sentido ofrecer instalarla otra vez.
+  // Ya instalada en ESTE movil: el boton principal pasa a decir "Abrir" en lugar de "Descargar".
   if (estaInstalada()) {
     boton.hidden = true
     if (nota) nota.hidden = true
     const abrir = document.getElementById('abrir-app')
-    if (abrir) abrir.textContent = 'Abrir Kairós'
+    if (abrir) abrir.textContent = '📲 Abrir Kairós'
     return
   }
 
@@ -203,6 +221,6 @@ async function cargarDatos() {
   }
 }
 
-prepararInstalacion()
+prepararInstalacion(document.getElementById('boton-instalar'))
 cargarDatos()
 cargarApoyo()

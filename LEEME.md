@@ -13,7 +13,8 @@ No es la app. La app está en **https://oscarmestre2011.github.io/gymlog/** y su
 | `index.html` | La página. Todo el texto está aquí. |
 | `styles.css` | Los estilos. Paleta y aire de la app (fondo `#0f1115`, verde `#4ade80`). |
 | `main.js` | Trae los datos de la app, pinta las tarjetas y las dudas, y hace funcionar el botón de instalar. |
-| `publicar/kairos.json` | **Generado. No se toca a mano.** |
+| `publicar/kairos.json` | **Generado. No se toca a mano.** Versión, características y dudas. |
+| `publicar/apoyo.json` | **Generado. No se toca a mano.** Enlace de donación, importes y textos. |
 | `assets/` | Capturas de la app e iconos. Las capturas se recortan de `../gymlog/capturas/`. |
 | `herramientas/recortar-capturas.ps1` | El script que recorta y reduce esas capturas. |
 | `404.html` | Lo que se ve si alguien escribe mal una dirección. |
@@ -26,7 +27,12 @@ La regla es que **la web no inventa nada**: lo que cuenta sale de la app.
 
 - El número de versión y las dudas frecuentes vienen de `../gymlog/src/lib/ayuda.ts` y
   `../gymlog/src/lib/changelog.ts`, los mismos archivos que usa la app por dentro.
-- Para regenerar `publicar/kairos.json` después de tocar la app:
+- Las características salen de `../gymlog/src/lib/kairos.ts`.
+- El **apoyo voluntario** (enlace de PayPal e importes) también sale de `kairos.ts`, y los textos
+  son los mismos que enseña la app en Ajustes. Las tres reglas que lo mantienen siendo una donación
+  y no una venta están en ese archivo y vigiladas por pruebas: **no desbloquea nada, no desgrava y
+  no promete nada a cambio**. No las cambies sin leer los comentarios de `kairos.ts`.
+- Para regenerar los dos archivos después de tocar la app:
 
 ```
 cd "../gymlog"
@@ -34,7 +40,8 @@ npm.cmd run web
 ```
 
 Ese comando está en el repositorio de la app, en `scripts/generar-web.mjs`, y comprueba que salgan
-al menos 5 características y 10 preguntas antes de escribir nada.
+al menos 5 características, 10 preguntas y un enlace de donación con buena pinta antes de escribir
+nada.
 
 ## Cómo se prueba
 

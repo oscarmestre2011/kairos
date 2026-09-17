@@ -603,23 +603,6 @@ em {
   background: var(--bg-elev-2);
 }
 
-.marca-recomendado {
-  display: none;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border-radius: 99px;
-  padding: 2px 8px;
-}
-
-.es-ios .solo-ios,
-.no-ios .solo-android {
-  display: inline-flex;
-}
-
 #p-android:checked ~ .pestanas-botones label[for='p-android'],
 #p-ios:checked ~ .pestanas-botones label[for='p-ios'] {
   background: var(--accent);
@@ -685,6 +668,38 @@ em {
   text-align: center;
   color: var(--text-dim);
   margin-top: 26px;
+}
+
+/* ------------------------ apoyo voluntario (donaciones) ---------------------- */
+
+/*
+ * Los botones de donacion aparecen en varios sitios, siempre pegados a un boton de descarga o de
+ * abrir la app. Van pequenos y en boton fantasma para que se vean como un detalle y no compitan
+ * con el boton principal: si la donacion parece lo mas importante de la pagina, espanta.
+ */
+.apoyo-linea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 12px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.apoyo-linea p {
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.btn-apoyo {
+  padding: 9px 14px;
+  font-size: 0.95rem;
+  min-height: 0;
 }
 
 /* ----------------------------------- datos ---------------------------------- */
