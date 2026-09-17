@@ -1,0 +1,64 @@
+# Publica la web de Kairos en GitHub Pages, y ademas copia la APP dentro de la misma web.
+#
+# Por que se copia la app aqui: GitHub Pages solo admite UN dominio propio por repositorio. La web
+# vive en kairosentrena.com (este repositorio), pero la app se compila en su propio repositorio
+# (gymlog). Para que las dos cosas esten bajo el mismo nombre:
+#
+#   https://kairosentrena.com/       -> esta web
+#   https://kairosentrena.com/app/   -> la app, copiada de su publicacion
+#
+# Se copia la app YA PUBLICADA (que es publica) en lugar de pedir permisos entre repositorios, asi
+# que no hace falta ningun token ni secreto.
+#
+# La copia la hace herramientas/copiar-app.mjs, que reescribe las rutas del HTML para que la app
+# funcione igual servida desde /app/, y comprueba que no falte nada (manifiesto, service worker y
+# compilacion). Si falta algo, el flujo falla en lugar de publicar una app a medias.
+#
+# OJO con el orden: si se publica la app y despues no se vuelve a publicar la web, la copia de /app/
+# se queda con la version anterior. Se arregla lanzando este flujo a mano (Actions -> Publicar la
+# web -> Run workflow), o subiendo cualquier cambio a la web.
+name: Publicar la web
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Traer la app y colocarla en /app
+        run: node herramientas/copiar-app.mjs
+
+      - name: Preparar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir la carpeta compilada
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4

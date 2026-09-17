@@ -1,2 +1,3 @@
-﻿# Nada que ignorar: la web son cuatro archivos y las capturas ya vienen reducidas.
-# Se deja el archivo para que quede claro que se ha pensado y que no falta nada por subir.
+﻿# La carpeta app/ NO se versiona: la genera el flujo de publicacion copiando la app ya publicada
+# (herramientas/copiar-app.mjs). Asi no hay dos copias del mismo codigo que puedan desincronizarse.
+app/
