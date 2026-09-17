@@ -1,9 +1,9 @@
 # Kairós — web de presentación
 
 Página que presenta la app **Kairós** y explica cómo instalarla en el móvil.
-Dirección publicada: **https://oscarmestre2011.github.io/kairos/**
+Dirección publicada: **https://kairosentrena.com/**
 
-No es la app. La app está en **https://oscarmestre2011.github.io/gymlog/** y su código en
+No es la app. La app está en **https://kairosentrena.com/app/** y su código en
 `../gymlog`.
 
 ## Qué hay aquí
@@ -79,4 +79,4 @@ git push
 - **El nombre del repositorio** (`kairos`): cambiarlo cambia la dirección publicada, y esa dirección
   ya estará repartida.
 - **`kairos.json`, `assets/` y demás rutas relativas**: todo se pide con `./`, así que la web
-  funciona igual en `oscarmestre2011.github.io/kairos/` que en un dominio propio, sin tocar nada.
+  funciona igual en `kairosentrena.com/` que en un dominio propio, sin tocar nada.

@@ -11,7 +11,7 @@
  * contenido de reserva y los pasos de instalacion escritos a mano.
  */
 
-const ENLACE_APP = 'https://oscarmestre2011.github.io/gymlog/'
+const ENLACE_APP = 'https://kairosentrena.com/app/'
 const DATOS = './publicar/kairos.json'
 /** El apoyo y los datos de la app van en archivos distintos: si uno falla, el otro sigue en pie. */
 const DATOS_APOYO = './publicar/apoyo.json'
