@@ -12,7 +12,7 @@
     {
       "icono": "⏱️",
       "titulo": "El descanso arranca solo",
-      "texto": "Al guardar la serie empieza a contar con el descanso de ese ejercicio. Puedes añadir 30 segundos o pararlo. Al terminar avisa con sonido y con la barra parpadeando en verde."
+      "texto": "Al guardar la serie empieza a contar con el descanso de ese ejercicio: puedes añadir 30 segundos o pararlo. Al terminar avisa con sonido y con la barra parpadeando en verde. En iPhone el sonido no está garantizado, así que ahí te guía el parpadeo."
     },
     {
       "icono": "⇄",
@@ -52,7 +52,7 @@
     {
       "icono": "💾",
       "titulo": "Tus datos son tuyos, y te ayuda a no perderlos",
-      "texto": "No hay cuentas ni servidor. Como todo se guarda en tu móvil, la app insiste en las copias: las descargas a un archivo o deja que se guarden solas en una carpeta."
+      "texto": "No hay cuentas ni servidor. Todo vive en tu móvil, y por eso la app insiste en las copias: la descargas a un archivo cuando quieras o, en Android, dejas que se guarde sola en una carpeta del teléfono. En iPhone, la copia es siempre el archivo."
     }
   ],
   "preguntas": [
