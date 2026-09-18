@@ -31,7 +31,11 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # OJO: NO se cancela la publicacion en curso. Estaba en `true` y paso esto de verdad: al subir un
+  # cambio, GitHub lanzo DOS ejecuciones a la vez (una por el push y otra por un lanzamiento manual),
+  # la segunda cancelo a la primera a medias y durante un rato https://kairosentrena.com/app/ dio 404
+  # porque el artefacto se publico incompleto. Encolando, cada publicacion termina entera.
+  cancel-in-progress: false
 
 jobs:
   publicar:

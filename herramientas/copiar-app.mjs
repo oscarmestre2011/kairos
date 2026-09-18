@@ -118,6 +118,48 @@ function reescribirHtml(html) {
     .replace(/(src|href)="https:\/\/kairosentrena\.com\/app\/([^"]*)"/g, '$1="./$2"')
 }
 
+/**
+ * Añade a la app, dentro de su HTML, los datos que necesita un buscador.
+ *
+ * La app es una pantalla de aplicacion: su HTML no tiene titulo, ni descripcion, ni ficha. Sin esto,
+ * Google no sabe que existe. Se hace al copiarla (y no en el repositorio de la app) porque ahi el
+ * HTML lo genera el compilador en cada publicacion.
+ *
+ * La direccion canonica apunta a la PAGINA DE PRESENTACION, no a la app: asi el buscador enseña una
+ * sola direccion y no dos compitiendo entre ellas.
+ */
+function anadirDatosParaBuscadores(html) {
+  const extras = `
+    <!-- Anadido al copiar la app para la web (ver herramientas/copiar-app.mjs). -->
+    <title>Kairós — abre tu entrenamiento</title>
+    <meta name="description" content="Abre Kairós: tu registro de entrenamiento, sin conexión y con los datos en tu móvil. Si aún no la tienes, empieza por la presentación." />
+    <link rel="canonical" href="https://kairosentrena.com/" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kairós — abre tu entrenamiento" />
+    <meta property="og:description" content="Tu registro de entrenamiento, sin conexión y con los datos en tu móvil." />
+    <meta property="og:image" content="https://kairosentrena.com/assets/inicio.jpg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Kairós",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Android, iOS, Windows, macOS, Linux (navegador web)",
+        "inLanguage": "es",
+        "url": "https://kairosentrena.com/app/",
+        "description": "Registro de entrenamiento de fuerza: series, rutinas, descansos, progreso, medidas y cardio. Funciona sin conexión y guarda los datos en el propio teléfono.",
+        "author": { "@type": "Person", "name": "Óscar Muela", "jobTitle": "Maestro de Educación Física" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+      }
+    </script>`
+
+  // Se mete justo antes de cerrar el head, y si ya hubiera un titulo se quita para no repetirlo.
+  return html
+    .replace(/<title>.*?<\/title>/is, '')
+    .replace('</head>', `${extras}\n  </head>`)
+}
+
 // Se empieza de cero: si no, un archivo viejo que ya no existe en la app se quedaria para siempre.
 await rm(destino, { recursive: true, force: true })
 
@@ -133,9 +175,9 @@ while (cola.length) {
   if (!traido) continue
   console.log(`  ${ruta.padEnd(46)} ${(traido.contenido.length / 1024).toFixed(0)} KB`)
 
-  // El HTML se reescribe despues de guardarlo, para que las rutas apunten a su propia carpeta.
+  // El HTML se reescribe despues de guardarlo: rutas relativas y datos para los buscadores.
   if (/\.html$/i.test(ruta)) {
-    const arreglado = reescribirHtml(traido.contenido.toString('utf8'))
+    const arreglado = anadirDatosParaBuscadores(reescribirHtml(traido.contenido.toString('utf8')))
     await writeFile(join(destino, ruta), arreglado, 'utf8')
   }
 
@@ -161,6 +203,43 @@ const compilado = [...descargados].find((r) => /^assets\/index-.*\.js$/.test(r))
 if (!compilado) faltan.push('assets/index-*.js')
 
 console.log(`\n${descargados.size} archivos, ${(bytes / 1024).toFixed(0)} KB en total`)
+
+/**
+ * Añade la app al sitemap.
+ *
+ * El sitemap es la lista de direcciones que se le da a Google. Sin esto solo aparece la pagina de
+ * presentacion, y la app (que es donde de verdad quiere llegar la gente) no se anuncia nunca. Se
+ * hace aqui porque esta es la unica direccion desde la que se sabe que la app existe.
+ */
+const sitemap = join(destino, '..', 'sitemap.xml')
+try {
+  const contenido = await readFile(sitemap, 'utf8')
+  const hoy = new Date().toISOString().slice(0, 10)
+  const entradaApp = `  <url>
+    <loc>https://kairosentrena.com/app/</loc>
+    <lastmod>${hoy}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>`
+
+  if (!contenido.includes('/app/')) {
+    await writeFile(sitemap, contenido.replace('</urlset>', `${entradaApp}\n</urlset>`), 'utf8')
+    console.log('sitemap.xml: anadida la direccion de la app')
+  } else {
+    // Si ya estaba, solo se le pone la fecha de hoy.
+    await writeFile(
+      sitemap,
+      contenido.replace(
+        /(<loc>https:\/\/kairosentrena\.com\/app\/<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/,
+        `$1${hoy}$2`,
+      ),
+      'utf8',
+    )
+    console.log('sitemap.xml: fecha de la app actualizada')
+  }
+} catch (error) {
+  console.warn(`  aviso: no se ha podido tocar el sitemap (${String(error).split('\n')[0]})`)
+}
 if (faltan.length) {
   console.error(`\nFALTAN archivos imprescindibles: ${faltan.join(', ')}`)
   process.exit(1)
