@@ -55,6 +55,19 @@ jobs:
       - name: Traer la app y colocarla en /app
         run: node herramientas/copiar-app.mjs
 
+      - name: Comprobar que la app esta en el artefacto
+        # Si esto falla, es mejor que el flujo se pare a publicar una web sin app: paso de verdad el
+        # 18-09-2026 y la direccion de descarga estuvo dando 404 un rato.
+        #
+        # Aqui ya no se sube nada todavia (el artefacto se crea despues), asi que esto solo comprueba
+        # lo que hay en disco. La comprobacion de verdad es la de despues de publicar.
+        run: |
+          set -e
+          test -f app/index.html || (echo "FALTA app/index.html" && exit 1)
+          test -f app/sw.js || (echo "FALTA app/sw.js: no funcionaria sin conexion" && exit 1)
+          grep -q 'assets/index-' app/index.html || (echo "El HTML de la app no apunta a su compilacion" && exit 1)
+          echo "La app esta lista para publicarse."
+
       - name: Preparar Pages
         uses: actions/configure-pages@v5
 
@@ -66,3 +79,20 @@ jobs:
       - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Comprobar la direccion publicada
+        # La unica comprobacion que vale: pedir la direccion de verdad y ver que responde. Sin esto,
+        # un artefacto a medias se publica y nadie se entera hasta que alguien pincha el boton.
+        run: |
+          set -e
+          for intento in 1 2 3 4 5 6; do
+            codigo=$(curl -s -o /dev/null -w "%{http_code}" -H 'Cache-Control: no-cache' https://kairosentrena.com/app/ || true)
+            if [ "$codigo" = "200" ]; then
+              echo "La app responde en https://kairosentrena.com/app/ (intento $intento)"
+              exit 0
+            fi
+            echo "intento $intento: la app responde $codigo; se espera un poco"
+            sleep 20
+          done
+          echo "La app NO responde en https://kairosentrena.com/app/"
+          exit 1
